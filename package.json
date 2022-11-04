@@ -1,0 +1,28 @@
+{
+  "name": "google_calendar_fetcher",
+  "version": "1.0.0",
+  "description": "Creates simple APIs that can be pinged to fetch Google Calendars",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+  },
+  "homepage": "",
+  "dependencies": {
+    "glob": "^8.0.3",
+    "node-fetch": "^3.2.10"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "eslint": "^8.26.0"
+  }
+}
