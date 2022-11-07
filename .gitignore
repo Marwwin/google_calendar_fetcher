@@ -1,3 +1,7 @@
+# Calendar examples
+
+calendars/*
+
 # Logs
 logs
 *.log

@@ -3,15 +3,14 @@ import fetch from "node-fetch";
 export function createGetCalendar(config) {
   let cache;
 
-  return async function getCalender() {
-    try {
-      const response = await fetch(calendarURL(config));
-      const json = await response.json();
-      cache = JSON.stringify(json);
-      return cache;
-    } catch (error) {
-      return (cache ? cache : error);
-    }
+  return function getCalender() {
+    return fetch(calendarURL(config))
+      .then((response) => response.json())
+      .then((data) => {
+        cache = JSON.stringify(data);
+        return cache;
+      })
+      .catch((error) => (cache ? cache : error));
   };
 }
 

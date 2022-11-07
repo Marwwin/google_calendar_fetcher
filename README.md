@@ -1,6 +1,6 @@
 # Google Calendar Fetcher
 
-Can spawn one or more servers that can be pingged to fetch a Google Calendar.
+Creates a server with multiple endpoints for fetching Google calendars.
 
 ## Start
 
@@ -12,7 +12,8 @@ Create a .js file inside the calendars folder that exports a variable called con
 
 ```js
 export const config = {
-  name: "Cornern",
+  name: "name",
+  endpoint: "endpoint"
   url: "https://www.googleapis.com/calendar/v3/calendars/link_to_some@group.calendar.google.com/calendar_name?",
   parameters: {
     timeMin: getOffsetDate(-10),
@@ -21,9 +22,7 @@ export const config = {
     sortorder: "ascending",
     singleEvents: "true",
   },
-  port: 3000,
-  hostname: "127.0.0.1", // optional value will default to DEFAULT_HOSTNAME
 };
 ```
 
-A default hostname can also be defined inside server.js
+If no endpoint is specified the endpoint will default to the name, if the name contain spaces they will be converted into underscores

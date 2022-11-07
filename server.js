@@ -1,45 +1,15 @@
-import { createServer } from "./utils/createServer.js";
-import glob from "glob";
-import path from "path";
+import express from "express";
+import createEndpoints from "./utils/createEndpoints.js";
 
-const DEFAULT_PARAMETERS = {
-  hostname: "0.0.0.0",
-  port: 3000,
-};
+const PORT = 3000;
+const HOSTNAME = "0.0.0.0";
 
 main();
 
-async function main() {
-  
-  for (const filename of calendars()) {
-    const { config } = await import(path.resolve(filename));
-    startServer(config);
-  }
-}
-
-function calendars() {
-  return glob.sync("./calendars/**/*.js");
-}
-
-function startServer(config) {
-  const { port, name, hostname } = applyDefaultParameters(
-    config,
-    DEFAULT_PARAMETERS
-  );
-
-  const server = createServer(config);
-
-  server.listen(port, hostname, () => {
-    console.log(`${name} server running at http://${hostname}:${port}/`);
+function main() {
+  const app = express();
+  createEndpoints(app);
+  app.listen(PORT, HOSTNAME, () => {
+    console.log(`Server running at ${HOSTNAME}:${PORT}`);
   });
-}
-
-function applyDefaultParameters(config, defaultParameters) {
-  const fixedValues = Object.fromEntries(
-    Object.entries(defaultParameters).map(([key, value]) => {
-      const newV = config[key] ? config[key] : value;
-      return [key, newV];
-    })
-  );
-  return { ...config, ...fixedValues };
 }
