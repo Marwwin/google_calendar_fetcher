@@ -9,5 +9,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  rules: {},
+  rules: {
+    "newline-per-chained-call": 2,
+  },
 };
